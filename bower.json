@@ -1,0 +1,32 @@
+{
+  "name": "mediawiki-storage",
+  "version": "0.0.0",
+  "authors": [
+    "Marcel Ruiz Forns <mforns@wikimedia.org>"
+  ],
+  "description": "Get JSON content from MediaWiki using JSONP",
+  "main": "src/mediawiki-storage.js",
+  "keywords": [
+    "mediawiki",
+    "storage",
+    "json",
+    "jsonp"
+  ],
+  "license": "Apache License 2.0",
+  "homepage": "https://github.com/wikimedia/analytics-mediawiki-storage",
+  "ignore": [
+    "dist",
+    ".git",
+    ".gitignore",
+    ".gitreview",
+    "gulpfile.js",
+    ".jshintrc",
+    "karma.conf.js",
+    "node_modules",
+    "package.json",
+    "test"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}

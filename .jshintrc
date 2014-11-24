@@ -1,0 +1,20 @@
+// Example: https://github.com/jshint/jshint/blob/master/examples/.jshintrc
+// Documentation: http://www.jshint.com/docs/
+{
+  "browser": true,
+  "globalstrict": true,
+  "undef": true,
+  "node": true,
+  "validthis": true,
+  "jquery": true,
+
+  "globals": {
+    "describe": true,
+    "it": true,
+    "expect": true,
+    "require": true,
+    "define": true,
+    "mediawikiStorage": true,
+    "sinon": true
+  }
+}
