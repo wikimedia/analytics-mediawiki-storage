@@ -13,32 +13,28 @@
      *     - the page id
      *     - the revision id
      *
-     * Note that:
-     * The page contents must be valid json.
-     * The retrieval of the page contents is done via jsonp.
-     * The return value is passed as parameter for the success callback.
-     * Errors occurring before jsonp call (TypeError) will be thrown
-     * synchronously, and errors occurring within or after jsonp call
-     * will be handed as parameter for error callback.
-     *
      * Parameter: options {object}
      *     {
-     *         host: {string}, // i.e. www.wikipedia.org
-     *         // at least one of the following three:
-     *         pageName: {string},
-     *         pageId: {string},
-     *         revId: {string},
-     *         success: {function}, // callback [optional]
-     *                              // parameter: object with page contents
-     *         error: {function} // callback [optional]
-     *                           // parameter: error thrown
+     *         host: {string},
+     *         // specify one of the following 3 params
+     *         pageName: {string} [optional],
+     *         pageId: {string} [optional],
+     *         revId: {string} [optional],
+     *         success: {function} [optional],
+     *         error: {function} [optional]
      *     }
+     *
+     * Returns: {Promise}
+     *
+     * For more information, see the api documentation:
+     * https://github.com/wikimedia/analytics-mediawiki-storage/blob/master/doc/api.md
      */
     MediawikiStorage.prototype.get = function (options) {
         if (typeof options !== 'object') {
             throw new TypeError('function must receive an object');
         }
 
+        var deferred = $.Deferred();
         var url  = this._createQueryUrl(options);
         var that = this;
 
@@ -48,23 +44,35 @@
             contentType: 'application/json',
 
             success: function (data) {
-                if (typeof options.success === 'function') {
-                    var pageJson;
-                    try {
-                        pageJson = that._getPageJson(data);
-                    } catch (e) {
-                        return options.error(e);
+                var pageJson;
+
+                // try to parse page contents
+                try {
+                    pageJson = that._getPageJson(data);
+                } catch (e) {
+                    if (typeof options.error === 'function') {
+                        options.error(e);
                     }
+                    deferred.reject(e);
+                    return;
+                }
+
+                // return parsed page contents
+                if (typeof options.success === 'function') {
                     options.success(pageJson);
                 }
+                deferred.resolve(pageJson);
             },
 
-            error: function (jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, e) {
                 if (typeof options.error === 'function') {
-                    options.error(errorThrown);
+                    options.error(e);
                 }
+                deferred.reject(e);
             }
         });
+
+        return deferred.promise();
     };
 
     /**
