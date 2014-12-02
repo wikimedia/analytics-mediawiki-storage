@@ -1,11 +1,10 @@
 # API Documentation
-
 mediawiki-storage should run within the following export environments: AMD (define), Node.js (require) and browser (global). After you get mediawiki-storage object, you can call the following methods on it:
 
-### get
+## get
 __Returns the contents of the specified mediawiki page.__
 
-The mediawiki page is specified using mediawiki's `host` and one of:
+The mediawiki page is specified using mediawiki's `host` and _one_ of:
 
 * `pageName`
 * `pageId`
@@ -13,8 +12,7 @@ The mediawiki page is specified using mediawiki's `host` and one of:
 
 _Note that the page contents must be valid json._
 
-##### Parameters:
-
+#### Parameters:
 1. options _{object}_ Dictionary with all options
 
 ```
@@ -28,17 +26,49 @@ _Note that the page contents must be valid json._
 }
 ```
 
-##### Return value:
+#### Retrieving the results:
+There are two options to retrieve the results:
 
-Is passed as a single parameter to `success` callback.
+##### Via _success_ parameter:
+```
+mediawikiStorage.get({
+	// ...
+	success: function (results) {
+		// do something with results
+	}
+});
+```
 
-##### Errors thrown:
+##### Via promise _done_:
+```
+mediawikiStorage.get({
+	// ...
+}).done(function (results) {
+	// do something with results
+});
+```
 
-Errors occurring before jsonp call will be thrown synchronously.
-If an error occures within or after the jsonp call, it will be passed to the `error` callback as a single parameter, and execution will be aborted.
+#### Errors thrown:
+Errors occurring before jsonp call will be thrown synchronously. Error occurring within or after the jsonp call, will be passed to the corresponding callback. There are two options to catch the error:
+##### Via _error_ parameter:
+```
+mediawikiStorage.get({
+	// ...
+	error: function (error) {
+		// do something with error
+	}
+});
+```
+##### Via promise _fail_:
+```
+mediawikiStorage.get({
+	// ...
+}).fail(function (error) {
+	// do something with error
+});
+```
 
-##### Example:
-
+#### Full example:
 ```
 mediawiki-storage.get({
 	host: 'meta.wikimedia.org',
