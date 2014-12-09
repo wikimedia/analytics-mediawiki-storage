@@ -3,7 +3,7 @@
 describe('get method', function() {
 
     var commonUrl = (
-        'http://www.wikimedia.org/w/api.php' +
+        '//www.wikimedia.org/w/api.php' +
         '?action=query&prop=revisions&format=json&rvprop=content'
     );
 

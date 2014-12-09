@@ -102,7 +102,7 @@
         // for reference, have a look at:
         // http://www.mediawiki.org/wiki/API:Query
         return [
-            'http://',
+            '//',
             options.host,
             '/w/api.php',
             '?action=query',
