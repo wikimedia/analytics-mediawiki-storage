@@ -4,7 +4,7 @@ describe('get method', function() {
 
     var commonUrl = (
         '//www.wikimedia.org/w/api.php' +
-        '?action=query&prop=revisions&format=json&rvprop=content'
+        '?action=query&prop=revisions&format=json&rvprop=content&rawcontinue=1'
     );
 
     it('creates a valid query url with pageName', function () {
