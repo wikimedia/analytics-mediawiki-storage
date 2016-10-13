@@ -1,6 +1,6 @@
 {
+  "private": true,
   "name": "mediawiki-storage",
-  "version": "0.1.0",
   "devDependencies": {
     "del": "^0.1.3",
     "gulp": "^3.8.10",
