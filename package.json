@@ -2,7 +2,7 @@
   "name": "mediawiki-storage",
   "version": "0.5.0",
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "XDG_CONFIG_HOME=. bower install",
     "gulp": "gulp",
     "karma": "karma",
     "test": "gulp build && karma start --single-run --log-level=debug"
