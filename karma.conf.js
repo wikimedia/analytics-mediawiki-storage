@@ -12,7 +12,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/bower_modules/jquery/dist/jquery.js',
+      'node_modules/jquery/dist/jquery.js',
       'src/mediawiki-storage.js',
       'test/mediawiki-storage-spec.js'
     ],

@@ -2,10 +2,10 @@
 
 Get JSON content from MediaWiki using JSONP
 
-### Use as a Bower component
-Install normally with Bower.
+### Use
+Install normally with npm.
 ```
-bower install --save mediawiki-storage
+npm install --save mediawiki-storage
 ```
 
 ### Use to modify and develop

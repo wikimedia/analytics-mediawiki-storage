@@ -110,7 +110,7 @@
             '&format=json',
             '&rvprop=content',
             '&rawcontinue=1',
-            filter
+            filter,
         ].join('');
     };
 
